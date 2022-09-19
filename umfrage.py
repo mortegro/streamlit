@@ -251,22 +251,22 @@ def use_don():
 
 def correlation_chart():
     ch = alt.Chart(data, height=300, width=300).mark_point().encode(
-        x=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
-        y=alt.Y('pos_eff:Q', scale=alt.Scale(domain=[0, 4.0]), title='Mean'),
+        y=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
+        x=alt.Y('pos_eff:Q', scale=alt.Scale(domain=[0, 4.0]), title='Mean'),
         color="gender:N"
     ).properties(
         title="Positive Vorurteile"
     )
-    cch = ch + ch.transform_regression('try','pos_eff').mark_line()
+    cch = ch + ch.transform_regression('pos_eff','try').mark_line()
 
     ch2 = alt.Chart(data, height=300, width=300).mark_point().encode(
-        x=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
-        y=alt.Y('neg_eff:Q', scale=alt.Scale(domain=[0, 4.0]), title='Mean'),
+        y=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
+        x=alt.Y('neg_eff:Q', scale=alt.Scale(domain=[0, 4.0]), title='Mean'),
         color="gender:N"
     ).properties(
         title="Negative Vorurteile"
     )
-    cch2 = ch2 + ch2.transform_regression('try','neg_eff').mark_line()
+    cch2 = ch2 + ch2.transform_regression('neg_eff','try').mark_line()
 
     return cch | cch2
 
