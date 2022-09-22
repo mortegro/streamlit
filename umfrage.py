@@ -154,7 +154,7 @@ def type_chart ():
         't_medical': 'Hypnotherapie',
         't_mindreading': 'Mindreading',
     }
-    title='Woher ist Ihnen Hypnose bekannt',
+    title='Welche Arten von Hypnose sind Ihnen bekannt?',
     tx='Hypnoseart'
     ty='Bekanntheit'
     return bars(q, questions,squestions,title,tx,ty)
