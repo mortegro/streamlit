@@ -249,7 +249,7 @@ def use_don():
     )
     return pie+text
 
-def correlation_chart():
+def correlation_chart(trendline):
     ch = alt.Chart(data, height=300, width=300).mark_point().encode(
         y=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
         x=alt.Y('pos_eff:Q', scale=alt.Scale(domain=[0, 4.0]), title='Mean'),
@@ -257,7 +257,10 @@ def correlation_chart():
     ).properties(
         title="Positive Vorurteile"
     )
-    cch = ch + ch.transform_regression('pos_eff','try').mark_line()
+    if trendline:
+        cch = ch + ch.transform_regression('pos_eff','try').mark_line()
+    else:
+        cch = ch
 
     ch2 = alt.Chart(data, height=300, width=300).mark_point().encode(
         y=alt.X('try:N', title='Zustimmung',sort=alt.EncodingSortField(field="try", order='ascending' )),
@@ -266,7 +269,11 @@ def correlation_chart():
     ).properties(
         title="Negative Vorurteile"
     )
-    cch2 = ch2 + ch2.transform_regression('neg_eff','try').mark_line()
+
+    if trendline:
+        cch2 = ch2 + ch2.transform_regression('neg_eff','try').mark_line()
+    else:
+        cch2 = ch2
 
     return cch | cch2
 
@@ -288,5 +295,7 @@ st.altair_chart(negpred_graph(),use_container_width=True)
 st.subheader('Würden Sie Hypnose nutzen')
 st.altair_chart(use_graph(),use_container_width=True)
 st.altair_chart(use_don(),use_container_width=True)
+st.subheader('Vorurteile Gesamt')
+st.altair_chart(correlation_chart(False),use_container_width=True)
 st.subheader('Korrelation')
-st.altair_chart(correlation_chart(),use_container_width=True)
+st.altair_chart(correlation_chart(True),use_container_width=True)
