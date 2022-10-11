@@ -6,7 +6,7 @@ import altair as alt
 gender_map = { 1: 'männlich', 2: 'weiblich', 3: 'divers'}
 yn_map = { 0: 'nein', 1: 'ja'}
 e_map={4:'stimmt vollkommen', 3: 'stimmt eher', 2:'teils/teils', 1: 'stimmt eher nicht', 0: 'stimmt überhaupt nicht'}
-u_map={0:'ja', 1:'ja, vielleicht', 2:'weiss nicht', 3: 'eher nein', 4: 'nein, auf keinen Fall'}
+u_map={5:'ja', 4:'ja, vielleicht', 3:'weiss nicht', 2: 'eher nein', 1: 'nein, auf keinen Fall'}
 
 pos_eff = ['e_pain','e_smoking','e_fear','e_memory','e_selfworth','e_anxiety']
 neg_eff = ['e_force','e_nowake','e_freewill','e_intelligent']
